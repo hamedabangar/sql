@@ -104,9 +104,9 @@ When inserting the new vendor, you need to appropriately align the columns to be
 -> To insert the new row use VALUES, specifying the value you want for each column:
 VALUES(col1,col2,col3,col4,col5) 
 */
-create table tmp_new_vendor as select * from vendor;
+create table temp.tmp_new_vendor as select * from vendor;
 
-insert into tmp_new_vendor (vendor_id,vendor_name,vendor_type,vendor_owner_first_name,vendor_owner_last_name) values (10,'Thomass Superfood Store','Fresh Focused','Thomas','Rosenthal')
+insert into temp.tmp_new_vendor (vendor_id,vendor_name,vendor_type,vendor_owner_first_name,vendor_owner_last_name) values (10,'Thomass Superfood Store','Fresh Focused','Thomas','Rosenthal')
 
 
 -- Date
