@@ -85,9 +85,9 @@ sticker to everyone who has ever spent more than $2000 at the market. Write a qu
 of customers for them to give stickers to, sorted by last name, then first name. 
 
 HINT: This query requires you to join two tables, use an aggregate function, and use the HAVING keyword. */
-select customer_first_name,customer_last_name, sum(quantity*cost_to_customer_per_qty)
+select a.customer_id,a.customer_first_name,a.customer_last_name, sum(quantity*cost_to_customer_per_qty)
 from customer a inner join customer_purchases b on a.customer_id = b.customer_id
-group by customer_first_name,customer_last_name
+group by a.customer_id,a.customer_first_name,a.customer_last_name
 having sum(quantity*cost_to_customer_per_qty) > 2000
 order by a.customer_last_name, a.customer_first_name
 
