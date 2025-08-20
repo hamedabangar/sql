@@ -41,7 +41,7 @@ FROM customer_purchases;
 
 
 SELECT
-  customer_id,  market_date,  DENSE_RANK() OVER ( PARTITION BY customer_id    ORDER BY market_date  ) AS visit_number FROM (  SELECT DISTINCT customer_id, market_date  FROM customer_purchases
+  customer_id,  market_date,transaction_time,  DENSE_RANK() OVER ( PARTITION BY customer_id    ORDER BY market_date  ) AS visit_number FROM (  SELECT customer_id, market_date ,transaction_time FROM customer_purchases
 ) AS unique_visits;
 
 
@@ -136,8 +136,8 @@ Before your final group by you should have the product of those two queries (x*y
 select vendor_name,product_name,sum(original_price*5*customer_count) total_revenue from 
 (
 	select distinct v.vendor_name,p.product_name,original_price  from vendor v 
-	cross join vendor_inventory vi on v.vendor_id = vi.vendor_id
-	cross join product p on p.product_id = vi.product_id
+	join vendor_inventory vi on v.vendor_id = vi.vendor_id
+	join product p on p.product_id = vi.product_id
 )
 cross join 
 (
